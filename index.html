@@ -58,17 +58,10 @@
         let grade = gradecalc(points, maxPoints, percentage);
 
         if (errors <= 0) {
-          resultDiv.innerHTML = gradecalc(
-            points,
-            maxPoints,
-            gradingScheme,
-            percentage
-          );
+          resultDiv.innerHTML = gradecalc(grade);
         } else {
           resultDiv.innerHTML = validation(points, maxPoints, name);
         }
-
-        // Validate inputs
       }
       function gradecalc(grade, gradingScheme) {
         if (gradingScheme === "percentage") {
