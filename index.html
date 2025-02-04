@@ -37,6 +37,7 @@
     <script>
       const calculateBtn = document.getElementById("calculate-btn");
       const nameInput = document.getElementById("name");
+      const pointsInput = document.getElementById("points");
       const maxPointsInput = document.getElementById("max-points");
       const gradingSchemeSelect = document.getElementById("grading-scheme");
       const resultDiv = document.getElementById("result");
@@ -44,7 +45,6 @@
       calculateBtn.addEventListener("click", handleClick());
 
       function handleClick() {
-        console.log(1);
         const name = nameInput.value;
         const points = parseFloat(pointsInput);
         const maxPoints = parseFloat(maxPointsInput);
