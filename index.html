@@ -34,6 +34,8 @@
 
     <button id="calculate-btn">Aprēķināt vērtējumu</button>
 
+    <p id="resultDiv"></p>
+
     <script>
       const calculateBtn = document.getElementById("calculate-btn");
       const nameInput = document.getElementById("name");
@@ -61,11 +63,11 @@
           return;
         }
 
-        const grade = "";
-        if (gradingScheme === "letter") {
-          const percentage = (points / maxPoints) * 100;
+        let grade = "";
+        if (gradingScheme === "percentage") {
+          let percentage = (points / maxPoints) * 100;
           grade = `Jūsu procentuālā vērtība ir: ${percentage.toFixed(2)}%`;
-        } else if (gradingScheme === "percentage") {
+        } else if (gradingScheme === "letter") {
           if (points >= 90) {
             grade = "Jūsu burtu vērtējums ir: A";
           } else if (points >= 80) {
