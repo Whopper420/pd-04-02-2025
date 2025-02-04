@@ -52,19 +52,25 @@
         const maxPoints = parseFloat(maxPointsInput.value);
         const gradingScheme = gradingSchemeSelect.value;
 
-        // Validate inputs
-        if (!name || isNaN(points) || isNaN(maxPoints) || maxPoints <= 0) {
-          resultDiv.innerHTML = "Lūdzu, aizpildiet visus laukus pareizi.";
-          return;
-        }
-        if (points < 0 || points > maxPoints) {
-          resultDiv.innerHTML =
-            "Iegūtie punkti nedrīkst pārsniegt maksimālos punktus.";
-          return;
-        }
         let percentage = (points / maxPoints) * 100;
 
-        let grade = "";
+        let errors = validation(points, maxPoints, name);
+        let grade = gradecalc(points, maxPoints, percentage);
+
+        if (errors <= 0) {
+          resultDiv.innerHTML = gradecalc(
+            points,
+            maxPoints,
+            gradingScheme,
+            percentage
+          );
+        } else {
+          resultDiv.innerHTML = validation(points, maxPoints, name);
+        }
+
+        // Validate inputs
+      }
+      function gradecalc(grade, gradingScheme) {
         if (gradingScheme === "percentage") {
           grade = `Jūsu procentuālā vērtība ir: ${percentage.toFixed(2)}%`;
         } else if (gradingScheme === "letter") {
@@ -79,9 +85,18 @@
           } else {
             grade = "Jūsu burtu vērtējums ir: F";
           }
+          return;
         }
-
-        resultDiv.innerHTML = grade;
+      }
+      function validation(errors) {
+        if (!name || isNaN(points) || isNaN(maxPoints) || maxPoints <= 0) {
+          errors = "Lūdzu, aizpildiet visus laukus pareizi.";
+          return;
+        }
+        if (points < 0 || points > maxPoints) {
+          errors = "Iegūtie punkti nedrīkst pārsniegt maksimālos punktus.";
+          return;
+        }
       }
     </script>
   </body>
