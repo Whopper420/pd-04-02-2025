@@ -42,9 +42,10 @@
       const gradingSchemeSelect = document.getElementById("grading-scheme");
       const resultDiv = document.getElementById("result");
 
-      calculateBtn.addEventListener("click", handleClick());
+      calculateBtn.addEventListener("click", handleClick);
 
       function handleClick() {
+        console.log(2);
         const name = nameInput.value;
         const points = parseFloat(pointsInput);
         const maxPoints = parseFloat(maxPointsInput);
